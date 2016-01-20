@@ -1,0 +1,26 @@
+<html>
+    <head>
+	<title>Test ethereum framework and web3.js</title>
+	<script type="text/javascript" src="lib/node_modules/web3/node_modules/bignumber.js/bignumber.min.js"></script>
+	<script type="text/javascript" src="lib/node_modules/web3/dist/web3-light.js"></script>
+	<script type="text/javascript">
+	 
+	 var Web3 = require('web3');
+	 var web3 = new Web3();
+	 web3.setProvider(new web3.providers.HttpProvider("http://192.168.1.47:8545"));
+
+	 var updateBlock = function () {
+	     document.getElementById('curr_block').innerText = "Current Block:" + web3.eth.blockNumber;
+	 };
+	</script>
+
+    </head>
+
+    <body>
+	<div id="curr_block">Current Block: </div>
+        <div>
+            <button id="update" type="button" onClick="updateBlock();">Update</button>
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,48 @@
+name: test
+summary: Test snapp for the ethereum framework
+description: Testing various ways to connect to the ethereum framework
+vendor: Lefteris <lefteris@refu.co>
+architectures: [armhf]
+icon: icon.png
+version: 0.1
+frameworks:
+  - ethereum
+
+parts:
+   test-webserver:
+     plugin: nodejs
+     node-packages:
+       - web3
+       - jsdom
+
+   files-to-copy:
+     plugin: copy
+     files:
+       bin/test_server: bin/test_server
+       bin/arm-node: bin/arm-node
+       bin/node_server.sh: bin/node_server
+       bin/test-c-app: bin/tect-c-app
+       scripts/node_server.js: node_server.js
+       scripts/jquery-1.7.1.min.js: jquery-1.7.1.min.js
+       www/index.html: index.html
+       www/other_index.html: other_index.html
+
+services:
+  python-webserver:
+      start: bin/test_server
+      description: The webserver
+      caps:
+        - networking
+        - ethereum_ipc
+
+  node-webserver:
+      start: bin/node_server
+      caps:
+        - networking
+        - ethereum_ipc
+      
+binaries:
+  test-c-app:
+    start: bin/test-c-app
+    caps:
+      - ethereum_ipc
