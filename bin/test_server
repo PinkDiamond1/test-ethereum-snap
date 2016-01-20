@@ -1,0 +1,20 @@
+#!/usr/bin/python3
+
+import os
+import sys
+import urllib.request
+
+from http.server import HTTPServer, SimpleHTTPRequestHandler
+
+
+if __name__ == "__main__":
+    # we start in the snappy base directory, ensure we are in "www"
+    # os.chdir("www")
+
+    if len(sys.argv) > 1:
+        port = int(sys.argv[1])
+    else:
+        port = 80
+
+    httpd = HTTPServer(('', port), SimpleHTTPRequestHandler)
+    httpd.serve_forever()
