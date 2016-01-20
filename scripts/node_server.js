@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-var sys = require("sys"),
-var http = require("http"),
-var url = require("url"),
-var path = require("path"),
+var sys = require("sys");
+var http = require("http");
+var url = require("url");
+var path = require("path");
 var fs = require("fs");
 var jsdom = require("jsdom");
 var Web3 = require('web3');
@@ -28,12 +28,11 @@ http.createServer(function(request, response) {
 	    var $ = window.$;
 	    var title = "Block Number: " + result;
 	    $("h1").text(title);
-	    console.log("Title should be" + title);
-	    console.log(documentToSource(window.document));
+	    console.log("[Debug] Title should be" + title);
 	    // send the changed DOM as the response
 	    response.writeHead(200);
             response.write(window.document.documentElement.outerHTML);
-            response.end();
+        response.end();
 	});
     });
 }).listen(8080);
