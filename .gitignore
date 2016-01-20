@@ -1,0 +1,7 @@
+# ignore generated snaps
+*.snap
+
+# ignore snapcraft generated directories
+parts/
+snap/
+stage/
