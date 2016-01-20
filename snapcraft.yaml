@@ -21,7 +21,8 @@ parts:
        bin/test_server: bin/test_server
        bin/arm-node: bin/arm-node
        bin/node_server.sh: bin/node_server
-       bin/test-c-app: bin/tect-c-app
+       bin/test-c-app: bin/c-app-bin
+       bin/test-c-app.sh: bin/test-c-app
        scripts/node_server.js: node_server.js
        scripts/jquery-1.7.1.min.js: jquery-1.7.1.min.js
        www/index.html: index.html
@@ -43,6 +44,6 @@ services:
       
 binaries:
   test-c-app:
-    start: bin/test-c-app
+    exec: bin/test-c-app
     caps:
       - ethereum_ipc
