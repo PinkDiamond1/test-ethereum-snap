@@ -1,0 +1,4 @@
+options:
+    script:
+        required: true
+    destination-dir:
