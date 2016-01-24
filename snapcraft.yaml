@@ -24,6 +24,7 @@ parts:
      plugin: copy
      files:
        bin/test_server: bin/test_server
+       # Including an arm-hf compatible node binary
        bin/arm-node: bin/arm-node
        bin/node_server.sh: bin/node_server
        scripts/test-c-app-selector.sh: bin/test-c-app
@@ -35,12 +36,13 @@ parts:
 services:
   python-webserver:
       start: bin/test_server
-      description: The webserver
+      description: A test python webserver
       caps:
         - networking
         - ethereum_ipc
 
   node-webserver:
+      description: A test node webserver
       start: bin/node_server
       caps:
         - networking

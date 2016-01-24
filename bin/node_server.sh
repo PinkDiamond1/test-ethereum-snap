@@ -1,4 +1,20 @@
 #!/bin/sh
 
+platform=`uname -i`
+NODE_EXEC=
+
+# choose the right node executable depending on platform
+case $platform in
+  x86_64)
+    NODE_EXEC=node
+    ;;
+  armv7l)
+    NODE_EXEC=arm-node
+    ;;
+  *)
+    echo "unknown platform "
+    ;;
+esac
+
 export NODE_PATH=./lib/node_modules:$NODE_PATH
-arm-node node_server.js
+$NODE_EXEC node_server.js
