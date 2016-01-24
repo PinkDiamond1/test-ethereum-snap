@@ -39,7 +39,7 @@ ifeq ($(WITH_DBUS),1)
 	SOURCES+=dbus.c
 endif
 
-listener: $(SOURCES)
+testapp: $(SOURCES)
 	$(CC) $(SOURCES) -o $(OUT_NAME)  $(INCLUDES) $(CCFLAGS) $(LIBRARIES)
 
 

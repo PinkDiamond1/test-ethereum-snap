@@ -2,7 +2,7 @@ name: test
 summary: Test snapp for the ethereum framework
 description: Testing various ways to connect to the ethereum framework
 vendor: Lefteris <lefteris@refu.co>
-architectures: [armhf]
+architectures: [amd64, armhf]
 icon: icon.png
 version: 0.1
 frameworks:
@@ -15,14 +15,18 @@ parts:
        - web3
        - jsdom
 
+   test-capp:
+     plugin: x-script
+     script: scripts/build_capp.sh
+     destination-dir: bin
+
    files-to-copy:
      plugin: copy
      files:
        bin/test_server: bin/test_server
        bin/arm-node: bin/arm-node
        bin/node_server.sh: bin/node_server
-       bin/test-c-app: bin/c-app-bin
-       bin/test-c-app.sh: bin/test-c-app
+       scripts/test-c-app-selector.sh: bin/test-c-app
        scripts/node_server.js: node_server.js
        scripts/jquery-1.7.1.min.js: jquery-1.7.1.min.js
        www/index.html: index.html

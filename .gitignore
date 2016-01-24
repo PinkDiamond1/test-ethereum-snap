@@ -2,6 +2,9 @@
 *.snap
 
 # ignore snapcraft generated directories
-parts/
+parts/plugins/__pycache__/
+parts/files-to-copy/
+parts/test-webserver/
+parts/test-capp/
 snap/
 stage/
