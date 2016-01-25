@@ -1,6 +1,8 @@
 # ignore generated snaps
 *.snap
 
+src/test-c-app
+
 # ignore snapcraft generated directories
 parts/plugins/__pycache__/
 parts/files-to-copy/

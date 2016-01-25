@@ -12,10 +12,15 @@ CC=gcc
 INCLUDES=
 LIBRARIES=
 CCFLAGS=-Wall -Wextra
+GOT_ARM_COMPILER:=$(shell hash arm-linux-gnueabihf-gcc 2>/dev/null; echo $$?)
 
 # Set the compiler
 ifeq ($(ARCH),armhf)
-	CC=arm-linux-gnueabihf-gcc
+	ifeq ($(GOT_ARM_COMPILER),0)
+		CC=arm-linux-gnueabihf-gcc
+	else
+		$(error Asked to build for arm without having a cross compiler)
+	endif
 endif
 
 # Set our includes
