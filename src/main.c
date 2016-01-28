@@ -30,7 +30,7 @@ int main (int argc, char **argv)
     }
 
     static const char blocknum[] = "{\"jsonrpc\":\"2.0\",\"method\":\"eth_blockNumber\",\"params\":[],\"id\":83}";
-    if (write(sock, blocknum, sizeof(blocknum)) < 0) {
+    if (write(sock, blocknum, sizeof(blocknum) - 1) < 0) {
         perror("writing on stream socket");
         close(sock);
         exit(1);
