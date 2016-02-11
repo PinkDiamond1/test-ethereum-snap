@@ -10,8 +10,10 @@ var Web3 = require('web3');
 var web3 = new Web3();
 web3.setProvider(
     new web3.providers.IpcProvider(
-	"/var/lib/apps/ethereum/current/.ethereum/geth.ipc",
-	require('net')
+        // "/var/lib/apps/ethereum/current/.ethereum/geth.ipc",
+        // temporary until the shared snap directory gets introduced
+        "/root/.ethereum/geth.ipc",
+        require('net')
     )
 );
 
@@ -19,21 +21,21 @@ http.createServer(function(request, response) {
     var uri = url.parse(request.url).pathname;
     var filename = path.join(process.cwd(), "other_index.html");
     web3.eth.getBlockNumber(function (error, result) {
-	if (error) {
-	    console.log(error)
-	    return;
-	}
-	var htmlSource = fs.readFileSync(filename, "utf8");
-	call_jsdom(htmlSource, function (window) {
-	    var $ = window.$;
-	    var title = "Block Number: " + result;
-	    $("h1").text(title);
-	    console.log("[Debug] Title should be" + title);
-	    // send the changed DOM as the response
-	    response.writeHead(200);
+        if (error) {
+            console.log(error)
+            return;
+        }
+        var htmlSource = fs.readFileSync(filename, "utf8");
+        call_jsdom(htmlSource, function (window) {
+            var $ = window.$;
+            var title = "Block Number: " + result;
+            $("h1").text(title);
+            console.log("[Debug] Title should be" + title);
+            // send the changed DOM as the response
+            response.writeHead(200);
             response.write(window.document.documentElement.outerHTML);
-        response.end();
-	});
+            response.end();
+        });
     });
 }).listen(8080);
 

@@ -40,7 +40,9 @@ export PATH LD_LIBRARY_PATH
 cd $snapp_dir
 
 # fire the binary
-exec $snapp_bin /var/lib/apps/ethereum/current/.ethereum/geth.ipc
+# exec $snapp_bin /var/lib/apps/ethereum/current/.ethereum/geth.ipc
+# temporary until the shared snap directory gets introduced
+exec $snapp_bin /root/.ethereum/geth.ipc
 
 # never reach this
 exit 1
